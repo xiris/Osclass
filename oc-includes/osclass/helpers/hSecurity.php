@@ -275,8 +275,8 @@
         osc_set_alert_public_key();  // public key
         $key = hash("sha256", osc_get_alert_private_key(), true);
 
-        if(Cryptor::Usable()) {
-            return Cryptor::Encrypt($string, $key, 0);
+        if(is_cryptor_usable()) {
+            return \Defuse\Crypto\Crypto::encrypt($string, $key, 0);
         }
 
         // START DEPRECATED : To be removed in future versions
@@ -307,8 +307,8 @@
     function osc_decrypt_alert($string) {
         $key = hash("sha256", osc_get_alert_private_key(), true);
 
-        if(Cryptor::Usable()) {
-            return trim(substr(Cryptor::Decrypt($string, $key, 0), 32));
+        if(is_cryptor_usable()) {
+            return trim(substr(\Defuse\Crypto\Crypto::encrypt($string, $key, 0), 32));
         }
 
         // START DEPRECATED : To be removed in future versions
@@ -398,4 +398,17 @@
             $buffer = osc_genRandomPassword(2*$length);
         }
         return substr(str_replace('+', '.', base64_encode($buffer)), 0, $length);
+    }
+
+    /**
+     * Verify if necessary libs and functions are available for cryptor usage
+     * @return bool
+     */
+    function is_cryptor_usable() {
+        return
+            (function_exists('openssl_digest') &&
+            function_exists('openssl_encrypt') &&
+            function_exists('openssl_decrypt') &&
+            in_array(CIPHER_ALGO, openssl_get_cipher_methods(true)) &&
+            in_array(HASH_ALGO, openssl_get_md_methods(true)));
     }

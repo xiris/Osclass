@@ -190,11 +190,9 @@ require_once LIB_PATH . 'osclass/frm/BanRule.form.class.php';
 require_once LIB_PATH . 'osclass/functions.php';
 require_once LIB_PATH . 'osclass/helpers/hAdminMenu.php';
 
-
 require_once LIB_PATH . 'osclass/core/iObject_Cache.php';
 require_once LIB_PATH . 'osclass/core/Object_Cache_Factory.php';
 require_once LIB_PATH . 'osclass/helpers/hCache.php';
-require_once LIB_PATH . 'openssl-cryptor/Cryptor.php';
 require_once LIB_PATH . 'osclass/compatibility.php';
 
 

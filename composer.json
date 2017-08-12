@@ -35,7 +35,8 @@
     "eddieantonio/bcrypt": "0.3.3",
     "google/recaptcha": "1.1.3",
     "freefri/recaptcha-php": "0.1.0",
-    "xiris/osclass-ajaxuploader": "0.1.0"
+    "xiris/osclass-ajaxuploader": "0.1.0",
+    "defuse/php-encryption": "2.1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.2",
